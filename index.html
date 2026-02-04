@@ -2139,9 +2139,21 @@
             }
         });
 
-        // Mostrar popup ao carregar a página (após 500ms)
+        // Mostrar popup ao carregar a página apenas em desktop (após 500ms)
         window.addEventListener('load', function() {
-            setTimeout(showQRModal, 500);
+            // Verificar se é desktop (largura maior que 768px)
+            if (window.innerWidth > 768) {
+                setTimeout(showQRModal, 500);
+            }
+        });
+
+        // Também verificar ao redimensionar a janela
+        window.addEventListener('resize', function() {
+            const modal = document.getElementById('qrModal');
+            // Se redimensionar para mobile, fechar o modal se estiver aberto
+            if (window.innerWidth <= 768 && modal.classList.contains('active')) {
+                closeQRModal();
+            }
         });
     </script>
 </body>
