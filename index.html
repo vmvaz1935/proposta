@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pacotes Jurídicos para Contadores | Blindagem Jurídica Escalável</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #3182ce;
+            --text-dark: #2d3748;
+            --text-light: #718096;
+            --bg-light: #f7fafc;
+            --bg-white: #ffffff;
+            --border-color: #e2e8f0;
+            --success-color: #38a169;
+            --warning-color: #d69e2e;
+            --danger-color: #e53e3e;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--bg-white);
+        }
+
+        /* Header Fixo */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo-header {
+            max-height: 50px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 150px 2rem 100px;
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5em;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary-color);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin: 0.5rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        section h2 {
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 1em;
+            text-align: center;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 0.5em;
+            display: inline-block;
+            width: 100%;
+        }
+
+        section h3 {
+            font-size: 1.8em;
+            color: var(--secondary-color);
+            margin: 1.5em 0 1em;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.08);
+            border-color: var(--accent-color);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 1.5em;
+            line-height: 1.3;
+        }
+
+        .card p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 0.4em 1em;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: 0.2em;
+        }
+
+        .badge-simples {
+            background-color: #c6f6d5;
+            color: #22543d;
+        }
+
+        .badge-medio {
+            background-color: #fed7aa;
+            color: #7c2d12;
+        }
+
+        .badge-robusto {
+            background-color: #fecaca;
+            color: #991b1b;
+        }
+
+        /* Price Cards */
+        .price-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            margin: 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .price-card h3 {
+            color: white;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 1.8em;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        .price-large {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin: 0.5em 0;
+            line-height: 1;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .price-small {
+            font-size: 1.1em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            line-height: 1.6;
+        }
+
+        /* Package Cards */
+        .package-card {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 1.5rem 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .package-card:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transform: translateY(-4px);
+        }
+
+        .package-card h3 {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            font-size: 1.6em;
+            font-weight: 700;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--bg-light);
+        }
+
+        .package-card > p {
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.05em;
+        }
+
+        .package-card ul {
+            margin: 1.5em 0;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .package-card li {
+            margin: 0.75em 0;
+            color: var(--text-dark);
+            padding-left: 1.75em;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .package-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .price-comparison {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2em;
+            margin-bottom: 1em;
+        }
+
+        .price-item {
+            flex: 1;
+            padding: 1.75em 1.5em;
+            background: var(--bg-light);
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .price-item:hover {
+            border-color: var(--accent-color);
+            transform: scale(1.02);
+        }
+
+        .price-item.highlight {
+            background: rgba(255,255,255,0.25);
+            color: white;
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        .price-item.highlight:hover {
+            background: rgba(255,255,255,0.3);
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        .price-item .label {
+            font-size: 0.85em;
+            opacity: 0.85;
+            margin-bottom: 0.75em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .price-item .value {
+            font-size: 2em;
+            font-weight: 700;
+            line-height: 1.2;
+            color: inherit;
+        }
+
+        .price-item.highlight .label {
+            opacity: 0.95;
+        }
+
+        .price-savings {
+            font-size: 0.9em;
+            color: var(--success-color);
+            font-weight: 600;
+            margin-top: 0.5em;
+            display: block;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        table th {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        table tr:hover {
+            background-color: var(--bg-light);
+        }
+
+        table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Problem Solution */
+        .problem-solution {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .problem-box, .solution-box {
+            padding: 2rem;
+            border-radius: 12px;
+        }
+
+        .problem-box {
+            background: #fed7d7;
+            border-left: 4px solid #e53e3e;
+        }
+
+        .problem-box h3 {
+            color: #c53030;
+        }
+
+        .solution-box {
+            background: #c6f6d5;
+            border-left: 4px solid #38a169;
+        }
+
+        .solution-box h3 {
+            color: #22543d;
+        }
+
+        /* Process Steps */
+        .process-step {
+            display: flex;
+            align-items: flex-start;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: var(--bg-light);
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .process-number {
+            background: var(--accent-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.5em;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .process-content h3 {
+            margin-top: 0;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 80px 2rem;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: white;
+            border: none;
+            margin-bottom: 1em;
+        }
+
+        .checklist {
+            text-align: left;
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem auto;
+            max-width: 600px;
+        }
+
+        .checklist ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            padding: 0.8em 0;
+            padding-left: 2em;
+            position: relative;
+        }
+
+        .checklist li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #68d391;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .logo-footer {
+            max-height: 50px;
+            width: auto;
+            margin: 1rem 0;
+        }
+
+        /* Background Sections */
+        .bg-light {
+            background-color: var(--bg-light);
+        }
+
+        /* Card específicos para planos */
+        .plan-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .plan-card .price-card {
+            margin: -2.5rem -2.5rem 2rem -2.5rem;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .plan-card-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .plan-features {
+            flex: 1;
+        }
+
+        .plan-features ul {
+            margin-bottom: 1.5rem;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .plan-features li {
+            padding-left: 1.75em;
+            position: relative;
+            margin: 0.75em 0;
+            line-height: 1.6;
+        }
+
+        .plan-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .plan-features p {
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 0.75em;
+            margin-top: 1.5em;
+        }
+
+        .plan-features p:first-child {
+            margin-top: 0;
+        }
+
+        .plan-note {
+            margin-top: auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            font-style: italic;
+            color: var(--text-light);
+            font-size: 0.95em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2em;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            section h2 {
+                font-size: 2em;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .card {
+                padding: 1.75rem;
+            }
+
+            .package-card {
+                padding: 1.75rem;
+            }
+
+            .price-comparison {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .price-large {
+                font-size: 2.5em;
+            }
+
+            .process-step {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .process-number {
+                margin: 0 auto 1rem;
+            }
+        }
+
+        /* Smooth Animations */
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <img src="logosuperior.webp" alt="Logo" class="logo-header">
+            <ul class="nav-links">
+                <li><a href="#sobre">Para Quem É</a></li>
+                <li><a href="#documentos">Documentos</a></li>
+                <li><a href="#pacotes">Pacotes</a></li>
+                <li><a href="#planos">Planos</a></li>
+                <li><a href="#b2b2c">B2B2C</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Pacotes Jurídicos<br>para Contadores</h1>
+            <p class="subtitle">Blindagem jurídica escalável para seu escritório</p>
+            <a href="#contato" class="cta-button">Agendar Conversa</a>
+        </div>
+    </section>
+
+    <!-- Para Quem É -->
+    <section id="sobre" class="bg-light">
+        <div class="container">
+            <h2>Para Quem É?</h2>
+            <p style="font-size: 1.2em; text-align: center; margin-bottom: 2rem; color: var(--text-dark);">
+                Escritórios contábeis que buscam reduzir riscos e escalar com segurança
+            </p>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>✅ Reduzir Retrabalho</h3>
+                    <p>Documentos padronizados que eliminam retrabalho e criam processos claros.</p>
+                </div>
+                <div class="card">
+                    <h3>✅ Reduzir Riscos</h3>
+                    <p>Contratos robustos que protegem seu escritório de responsabilidades desnecessárias.</p>
+                </div>
+                <div class="card">
+                    <h3>✅ Padronizar Atendimento</h3>
+                    <p>Estrutura jurídica consistente para todos os clientes, garantindo qualidade.</p>
+                </div>
+                <div class="card">
+                    <h3>✅ Escalar com Controle</h3>
+                    <p>Cresça sua operação sem perder controle, com processos bem definidos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contexto -->
+    <section>
+        <div class="container">
+            <h2>Por Que Contadores Precisam de Blindagem Jurídica?</h2>
+            <div class="card" style="max-width: 900px; margin: 2rem auto;">
+                <p style="font-size: 1.2em; line-height: 1.8; color: var(--text-dark); margin-bottom: 1.5em;">
+                    A prestação de serviços contábeis envolve responsabilidades complexas. 
+                    Sem documentos jurídicos adequados, você fica exposto a riscos desnecessários 
+                    e perde oportunidades de padronizar e escalar seu atendimento.
+                </p>
+                <div style="padding: 1.5em; background: var(--bg-light); border-radius: 8px; border-left: 4px solid var(--accent-color);">
+                    <strong style="color: var(--primary-color); font-size: 1.1em;">A solução:</strong> 
+                    <span style="color: var(--text-dark);">Documentos jurídicos estruturados que protegem seu escritório 
+                    e criam processos claros para clientes e equipe.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problema → Solução -->
+    <section class="bg-light">
+        <div class="container">
+            <h2>O Problema → A Solução</h2>
+            <div class="problem-solution">
+                <div class="problem-box">
+                    <h3>🔴 Dores Comuns</h3>
+                    <ul>
+                        <li>Contratos fracos ou inexistentes</li>
+                        <li>Escopo "infinito" sem limites claros</li>
+                        <li>Riscos de LGPD sem proteção</li>
+                        <li>Inadimplência sem processo definido</li>
+                        <li>Políticas internas desatualizadas</li>
+                        <li>Falta de padronização</li>
+                    </ul>
+                </div>
+                <div class="solution-box">
+                    <h3>✅ Remédio Jurídico</h3>
+                    <ul>
+                        <li>Contratos robustos e personalizados</li>
+                        <li>Matriz de responsabilidades (RACI/SLA)</li>
+                        <li>Políticas de proteção de dados (LGPD)</li>
+                        <li>Protocolos de cobrança estruturados</li>
+                        <li>Políticas internas atualizadas</li>
+                        <li>Documentos prontos para escalar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentos Avulsos -->
+    <section id="documentos">
+        <div class="container">
+            <h2>Documentos Avulsos</h2>
+            <p style="text-align: center; margin-bottom: 2rem; color: var(--text-dark);">
+                Valores base (escopo padrão). Itens com maior complexidade 
+                (muitos sócios, holding, investidor, urgência, volume alto de cláusulas) 
+                devem ser orçados acima.
+            </p>
+            <div style="display: flex; gap: 1em; justify-content: center; margin-bottom: 2rem;">
+                <span class="badge badge-simples">Simples</span>
+                <span class="badge badge-medio">Médio</span>
+                <span class="badge badge-robusto">Robusto</span>
+            </div>
+
+            <!-- Tabela Sociedade -->
+            <div class="card" style="margin-top: 3rem;">
+                <h3>Sociedade</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Documento</th>
+                            <th>Entrega</th>
+                            <th>Nível</th>
+                            <th>Investimento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Contrato Social (constituição) ou Alteração Contratual</strong></td>
+                            <td>Estrutura societária, administração, quotas, regras essenciais</td>
+                            <td><span class="badge badge-robusto">Robusto</span></td>
+                            <td><strong>R$ 2.150,00</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Acordo de Sócios (Premium)</strong></td>
+                            <td>Governança, entrada/saída, compra e venda de quotas, deadlock, não concorrência</td>
+                            <td><span class="badge badge-robusto">Robusto</span></td>
+                            <td><strong>A partir de R$ 4.150,00</strong><br><small>(BÁSICO ATÉ 2 SÓCIOS)</small></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Tabela Responsabilização -->
+            <div class="card">
+                <h3>Responsabilização</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Documento</th>
+                            <th>Entrega</th>
+                            <th>Nível</th>
+                            <th>Investimento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Termo de Ciência e Cooperação do Cliente</strong></td>
+                            <td>Obrigações do cliente (documentos/prazos), limites, ciência de riscos</td>
+                            <td><span class="badge badge-simples">Simples</span></td>
+                            <td><strong>R$ 1.290,00</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Termo/Protocolo de Entrega de Documentos</strong></td>
+                            <td>Checklist, "recebido/não recebido", prazos, trilha de evidências</td>
+                            <td><span class="badge badge-simples">Simples</span></td>
+                            <td><strong>R$ 1.490,00</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Tabela Equipe/Modelo -->
+            <div class="card">
+                <h3>Equipe/Modelo de Contratação</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Documento</th>
+                            <th>Entrega</th>
+                            <th>Nível</th>
+                            <th>Investimento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Pacote Políticas Internas (Home Office + Jornada)</strong></td>
+                            <td>Regras internas, conduta, segurança/uso de dados, jornada</td>
+                            <td><span class="badge badge-medio">Médio</span></td>
+                            <td><strong>R$ 2.900,00</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Política de Bônus/Comissões</strong></td>
+                            <td>Critérios, elegibilidade, regras, registro e prevenção de passivo</td>
+                            <td><span class="badge badge-medio">Médio</span></td>
+                            <td><strong>R$ 1.990,00</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Revisão de 1 modelo (CLT ou PJ)</strong></td>
+                            <td>Revisão preventiva do modelo padrão do escritório</td>
+                            <td><span class="badge badge-medio">Médio</span></td>
+                            <td><strong>R$ 1.990,00</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Tabela LGPD -->
+            <div class="card">
+                <h3>LGPD/Segurança da Informação</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Documento</th>
+                            <th>Entrega</th>
+                            <th>Nível</th>
+                            <th>Investimento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Política de Proteção de Dados (MVP)</strong></td>
+                            <td>Política interna + rotinas mínimas + responsabilidades</td>
+                            <td><span class="badge badge-robusto">Robusto</span></td>
+                            <td><strong>R$ 3.900,00</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>NDA / Termo de Confidencialidade</strong></td>
+                            <td>Sigilo, penalidades, prazo, devolução/destruição de info</td>
+                            <td><span class="badge badge-simples">Simples</span></td>
+                            <td><strong>R$ 1.290,00</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cláusulas LGPD / DPA básico (operador/suboperador)</strong></td>
+                            <td>Tratamento de dados, incidentes, suboperadores, auditoria</td>
+                            <td><span class="badge badge-medio">Médio</span></td>
+                            <td><strong>R$ 1.990,00</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Tabela Escopo e Cobrança -->
+            <div class="card">
+                <h3>Escopo "Infinito" e Cobrança</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Documento</th>
+                            <th>Entrega</th>
+                            <th>Nível</th>
+                            <th>Investimento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Contrato de Prestação de Serviços Contábeis</strong></td>
+                            <td>Escopo/fora de escopo, SLA, responsabilidades, LGPD, cobrança, rescisão</td>
+                            <td><span class="badge badge-robusto">Robusto</span></td>
+                            <td><strong>R$ 4.900,00</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Matriz de Responsabilidades (RACI/SLA)</strong></td>
+                            <td>Quem faz o quê, prazos, entregáveis e dependências do cliente</td>
+                            <td><span class="badge badge-robusto">Robusto</span></td>
+                            <td><strong>R$ 1.490,00</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Política de Cobrança (procedimento)</strong></td>
+                            <td>Fluxo, avisos, suspensão, multas, documentação da cobrança</td>
+                            <td><span class="badge badge-medio">Médio</span></td>
+                            <td><strong>R$ 1.490,00</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Notificação Extrajudicial de Cobrança (1 devedor)</strong></td>
+                            <td>Texto + estratégia + lista de anexos e forma de envio</td>
+                            <td><span class="badge badge-simples">Simples</span></td>
+                            <td><strong>R$ 790,00</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Confissão de Dívida / Acordo de Parcelamento</strong></td>
+                            <td>Garantias básicas, vencimento antecipado, penalidades</td>
+                            <td><span class="badge badge-medio">Médio</span></td>
+                            <td><strong>R$ 1.490,00</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Tabela Parcerias e Marca -->
+            <div class="card">
+                <h3>Parcerias/Fornecedores e Marca/Ativos Intangíveis</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Documento</th>
+                            <th>Entrega</th>
+                            <th>Nível</th>
+                            <th>Investimento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Contrato de Parceria/Indicação</strong></td>
+                            <td>Regras, confidencialidade, não concorrência, responsabilidades</td>
+                            <td><span class="badge badge-medio">Médio</span></td>
+                            <td><strong>R$ 3.900,00</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Contrato com Fornecedor (prestação de serviços)</strong></td>
+                            <td>Escopo, SLA, responsabilidades, confidencialidade, rescisão</td>
+                            <td><span class="badge badge-medio">Médio</span></td>
+                            <td><strong>R$ 3.900,00</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Registro de Marca (INPI) – preparo e protocolo</strong></td>
+                            <td>Busca preliminar + estratégia de classe + protocolo (taxas à parte)</td>
+                            <td><span class="badge badge-simples">Simples</span></td>
+                            <td><strong>R$ 2.900,00</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Licença de Uso de Marca / Termo de Uso</strong></td>
+                            <td>Autorização, padrões de uso, penalidades, prazo</td>
+                            <td><span class="badge badge-medio">Médio</span></td>
+                            <td><strong>R$ 2.900,00</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Política de Uso de Marca (curta)</strong></td>
+                            <td>Regras para sócios/equipe/parceiros (nome, domínio, materiais)</td>
+                            <td><span class="badge badge-medio">Médio</span></td>
+                            <td><strong>R$ 1.490,00</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pacotes Fechados -->
+    <section id="pacotes" class="bg-light">
+        <div class="container">
+            <h2>Pacotes Fechados (Projetos)</h2>
+            <p style="text-align: center; font-size: 1.2em; margin-bottom: 2rem; color: var(--text-dark);">
+                <strong>"Prontos para vender"</strong> — Ideais para o contador comprar como 
+                "implantação" (e você entrega em 45 dias).
+            </p>
+            <div class="card" style="max-width: 800px; margin: 0 auto 3rem;">
+                <div style="text-align: center; padding: 1.5em; background: var(--bg-light); border-radius: 8px;">
+                    <p style="margin: 0; font-size: 1.1em;">
+                        <strong>Prazo de entrega:</strong> 45 dias<br>
+                        <strong>Economia:</strong> Desconto em relação aos valores avulsos
+                    </p>
+                </div>
+            </div>
+
+            <div class="card-grid">
+                <!-- Pacote A -->
+                <div class="package-card">
+                    <h3>A) Blindagem Contábil 360 (core)</h3>
+                    <p><strong>Inclui:</strong></p>
+                    <ul>
+                        <li>Contrato de Prestação de Serviços Contábeis (robusto)</li>
+                        <li>Matriz de Responsabilidades (RACI/SLA)</li>
+                        <li>Termo de Ciência e Cooperação do Cliente</li>
+                        <li>Protocolo de Entrega de Documentos (evidências)</li>
+                        <li>Política de Cobrança (procedimento)</li>
+                        <li>NDA (Confidencialidade)</li>
+                    </ul>
+                    <div class="price-comparison">
+                        <div class="price-item">
+                            <div class="label">Preço avulso</div>
+                            <div class="value">R$ 11.950</div>
+                        </div>
+                        <div class="price-item highlight">
+                            <div class="label">Pacote</div>
+                            <div class="value">R$ 10.900</div>
+                            <span class="price-savings">Economia: R$ 1.050</span>
+                        </div>
+                    </div>
+                    <p style="text-align: center; margin-top: 1em; color: var(--text-light);">
+                        <strong>Prazo:</strong> 45 dias
+                    </p>
+                </div>
+
+                <!-- Pacote B -->
+                <div class="package-card">
+                    <h3>B) LGPD Contábil MVP</h3>
+                    <p><strong>Inclui:</strong></p>
+                    <ul>
+                        <li>Política de Proteção de Dados (MVP)</li>
+                        <li>NDA</li>
+                        <li>DPA/Cláusulas LGPD básico (operador/suboperador)</li>
+                    </ul>
+                    <div class="price-comparison">
+                        <div class="price-item">
+                            <div class="label">Avulso</div>
+                            <div class="value">R$ 7.180</div>
+                        </div>
+                        <div class="price-item highlight">
+                            <div class="label">Pacote</div>
+                            <div class="value">R$ 6.900</div>
+                            <span class="price-savings">Economia: R$ 280</span>
+                        </div>
+                    </div>
+                    <p style="text-align: center; margin-top: 1em; color: var(--text-light);">
+                        <strong>Prazo:</strong> 45 dias
+                    </p>
+                </div>
+
+                <!-- Pacote C -->
+                <div class="package-card">
+                    <h3>C) Cobrança & Inadimplência (Kit)</h3>
+                    <p><strong>Inclui:</strong></p>
+                    <ul>
+                        <li>Política de Cobrança</li>
+                        <li>2 Notificações</li>
+                        <li>Confissão de Dívida/Parcelamento</li>
+                    </ul>
+                    <div class="price-comparison">
+                        <div class="price-item">
+                            <div class="label">Avulso</div>
+                            <div class="value">R$ 5.060</div>
+                        </div>
+                        <div class="price-item highlight">
+                            <div class="label">Pacote</div>
+                            <div class="value">R$ 4.700</div>
+                            <span class="price-savings">Economia: R$ 360</span>
+                        </div>
+                    </div>
+                    <p style="text-align: center; margin-top: 1em; color: var(--text-light);">
+                        <strong>Prazo:</strong> 45 dias
+                    </p>
+                </div>
+
+                <!-- Pacote D -->
+                <div class="package-card">
+                    <h3>D) Pessoas & Rotinas (Trabalhista preventivo interno)</h3>
+                    <p><strong>Inclui:</strong></p>
+                    <ul>
+                        <li>Políticas internas (Home office + jornada)</li>
+                        <li>Revisão de 1 modelo (CLT ou PJ)</li>
+                        <li>Política de bônus/comissões</li>
+                    </ul>
+                    <div class="price-comparison">
+                        <div class="price-item">
+                            <div class="label">Avulso</div>
+                            <div class="value">R$ 6.880</div>
+                        </div>
+                        <div class="price-item highlight">
+                            <div class="label">Pacote</div>
+                            <div class="value">R$ 6.490</div>
+                            <span class="price-savings">Economia: R$ 390</span>
+                        </div>
+                    </div>
+                    <p style="text-align: center; margin-top: 1em; color: var(--text-light);">
+                        <strong>Prazo:</strong> 45 dias
+                    </p>
+                </div>
+
+                <!-- Pacote E -->
+                <div class="package-card">
+                    <h3>E) Parcerias & Fornecedores</h3>
+                    <p><strong>Inclui:</strong></p>
+                    <ul>
+                        <li>Contrato de Parceria/Indicação</li>
+                        <li>Contrato com Principal Fornecedor</li>
+                        <li>NDA</li>
+                    </ul>
+                    <div class="price-comparison">
+                        <div class="price-item">
+                            <div class="label">Avulso</div>
+                            <div class="value">R$ 9.090</div>
+                        </div>
+                        <div class="price-item highlight">
+                            <div class="label">Pacote</div>
+                            <div class="value">R$ 8.490</div>
+                            <span class="price-savings">Economia: R$ 600</span>
+                        </div>
+                    </div>
+                    <p style="text-align: center; margin-top: 1em; color: var(--text-light);">
+                        <strong>Prazo:</strong> 45 dias
+                    </p>
+                </div>
+
+                <!-- Pacote F -->
+                <div class="package-card">
+                    <h3>F) Marca & Ativos Intangíveis</h3>
+                    <p><strong>Inclui:</strong></p>
+                    <ul>
+                        <li>Registro de Marca (preparo/protocolo)</li>
+                        <li>Licença de uso de marca</li>
+                        <li>Política de uso de marca</li>
+                    </ul>
+                    <div class="price-comparison">
+                        <div class="price-item">
+                            <div class="label">Avulso</div>
+                            <div class="value">R$ 7.290</div>
+                        </div>
+                        <div class="price-item highlight">
+                            <div class="label">Pacote</div>
+                            <div class="value">R$ 6.900</div>
+                            <span class="price-savings">Economia: R$ 390</span>
+                        </div>
+                    </div>
+                    <p style="text-align: center; margin-top: 1.5em; color: var(--text-light); padding: 1em; background: var(--bg-light); border-radius: 8px;">
+                        <strong style="color: var(--primary-color);">Prazo:</strong> 45 dias
+                    </p>
+                    <p style="font-size: 0.9em; color: var(--text-light); text-align: center; margin-top: 1em; font-style: italic;">
+                        Obs.: taxas oficiais do INPI e custos externos à parte.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Planos Mensais -->
+    <section id="planos">
+        <div class="container">
+            <h2>Planos Mensais (Assinatura)</h2>
+            <p style="text-align: center; font-size: 1.2em; margin-bottom: 1em; color: var(--text-dark);">
+                <strong>Com onboarding em 45 dias</strong>
+            </p>
+            <p style="text-align: center; font-size: 1.1em; margin-bottom: 3rem; color: var(--text-dark);">
+                A lógica aqui é: <strong>rotina + prevenção + documentos por "cotas"</strong>.
+            </p>
+
+            <div class="card-grid">
+                <!-- Plano Essencial -->
+                <div class="card plan-card">
+                    <div class="price-card" style="margin: -2.5rem -2.5rem 2rem -2.5rem; border-radius: 16px 16px 0 0;">
+                        <h3>Plano 1 — Essencial</h3>
+                        <div class="price-large">R$ 987/mês</div>
+                        <p class="price-small">Para: escritório pequeno que quer reduzir risco e retrabalho.</p>
+                    </div>
+                    <div class="plan-card-content">
+                        <div class="plan-features">
+                            <p><strong>Onboarding (45 dias):</strong></p>
+                            <ul>
+                                <li>Diagnóstico rápido (checklist)</li>
+                                <li>Contrato com cliente</li>
+                                <li>NDA</li>
+                                <li>Política de cobrança</li>
+                                <li>Termo de ciência</li>
+                                <li>Protocolo de documentos</li>
+                            </ul>
+                            <p style="margin-top: 1.5em;"><strong>Inclui (mensal):</strong></p>
+                            <ul>
+                                <li>1 reunião/mês (até 45 min)</li>
+                                <li>Canal de dúvidas (assíncrono) limitado a até 2h de trabalho do advogado</li>
+                                <li>Até 2 triagens jurídicas/mês</li>
+                                <li>1 documento simples por mês</li>
+                                <li>1 documento médio a cada 60 dias</li>
+                            </ul>
+                        </div>
+                        <p class="plan-note">
+                            Ideal para "arrumar a casa" sem contrato robusto ainda.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Plano Profissional -->
+                <div class="card plan-card">
+                    <div class="price-card" style="margin: -2.5rem -2.5rem 2rem -2.5rem; border-radius: 16px 16px 0 0;">
+                        <h3>Plano 2 — Profissional</h3>
+                        <div class="price-large">R$ 1.987/mês</div>
+                        <p class="price-small">Para: escritório que quer "contrato forte" e padrão de atendimento.</p>
+                    </div>
+                    <div class="plan-card-content">
+                        <div class="plan-features">
+                            <p><strong>Onboarding (45 dias):</strong></p>
+                            <ul>
+                                <li>Diagnóstico rápido (checklist)</li>
+                                <li>Contrato com cliente</li>
+                                <li>Matriz de responsabilidade</li>
+                                <li>NDA</li>
+                                <li>Política de cobrança</li>
+                                <li>Termo de ciência</li>
+                                <li>Protocolo de documentos</li>
+                            </ul>
+                            <p style="margin-top: 1.5em;"><strong>Inclui (mensal):</strong></p>
+                            <ul>
+                                <li>1 reunião/mês (até 60 min)</li>
+                                <li>Até 4 triagens/mês</li>
+                                <li>2 documentos simples/mês</li>
+                                <li>3 documentos médios a cada 60 dias</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plano Growth -->
+                <div class="card plan-card">
+                    <div class="price-card" style="margin: -2.5rem -2.5rem 2rem -2.5rem; border-radius: 16px 16px 0 0;">
+                        <h3>Plano 3 — Growth</h3>
+                        <div class="price-large">R$ 3.987/mês</div>
+                        <p class="price-small">Para: escritório com carteira maior e operação mais complexa.</p>
+                    </div>
+                    <div class="plan-card-content">
+                        <div class="plan-features">
+                            <p><strong>Onboarding (45 dias):</strong></p>
+                            <ul>
+                                <li>Blindagem Contábil 360 completa</li>
+                                <li>LGPD MVP (se fizer sentido)</li>
+                            </ul>
+                            <p style="margin-top: 1.5em;"><strong>Inclui (mensal):</strong></p>
+                            <ul>
+                                <li>1 reunião/mês (até 90 min)</li>
+                                <li>Até 8 triagens/mês</li>
+                                <li>4 documentos simples/mês</li>
+                                <li>6 documentos médios a cada 60 dias</li>
+                                <li>Prioridade de resposta (SLA menor)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plano Prime -->
+                <div class="card plan-card">
+                    <div class="price-card" style="margin: -2.5rem -2.5rem 2rem -2.5rem; border-radius: 16px 16px 0 0;">
+                        <h3>Plano 4 — Prime</h3>
+                        <div class="price-large">R$ 6.987/mês</div>
+                        <p class="price-small">(ou sob medida)</p>
+                        <p class="price-small">Para: escritório premium / alta criticidade.</p>
+                    </div>
+                    <div class="plan-card-content">
+                        <div class="plan-features">
+                            <p><strong>Onboarding (45 dias):</strong></p>
+                            <ul>
+                                <li>Escopo customizado (normalmente inclui governança interna e trilha societária)</li>
+                            </ul>
+                            <p style="margin-top: 1.5em;"><strong>Inclui (mensal):</strong></p>
+                            <ul>
+                                <li>"Pacote de horas" (ex.: 10–12h/mês) + prioridade</li>
+                                <li>Até 10 documentos simples/mês</li>
+                                <li>4 documentos médios/mês</li>
+                                <li>1 documento robusto/trimestre (ou equivalência em horas)</li>
+                                <li>Gestão de crises (cobranças, conflitos, negociações) dentro do limite de horas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Módulo B2B2C -->
+    <section id="b2b2c" class="bg-light">
+        <div class="container">
+            <h2>Módulo Opcional B2B2C</h2>
+            <p style="text-align: center; font-size: 1.2em; margin-bottom: 1em; color: var(--text-dark);">
+                Para a base de clientes do contador (B2B2C controlado)
+            </p>
+            <p style="text-align: center; font-size: 1.1em; margin-bottom: 3rem; color: var(--text-dark);">
+                Para não "estourar" seu tempo, funciona por volume:
+            </p>
+
+            <div class="card-grid">
+                <div class="package-card">
+                    <h3>Legal Desk Start</h3>
+                    <div class="price-large" style="color: var(--primary-color); font-size: 2.5em; margin: 1rem 0;">R$ 690/mês</div>
+                    <p><strong>Inclui:</strong></p>
+                    <ul>
+                        <li>Até 5 triagens/mês</li>
+                        <li>15–20 min por triagem</li>
+                    </ul>
+                </div>
+
+                <div class="package-card">
+                    <h3>Legal Desk Standard</h3>
+                    <div class="price-large" style="color: var(--primary-color); font-size: 2.5em; margin: 1rem 0;">R$ 1.290/mês</div>
+                    <p><strong>Inclui:</strong></p>
+                    <ul>
+                        <li>Até 10 triagens/mês</li>
+                    </ul>
+                </div>
+
+                <div class="package-card">
+                    <h3>Legal Desk Plus</h3>
+                    <div class="price-large" style="color: var(--primary-color); font-size: 2.5em; margin: 1rem 0;">R$ 2.390/mês</div>
+                    <p><strong>Inclui:</strong></p>
+                    <ul>
+                        <li>Até 20 triagens/mês</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card" style="max-width: 800px; margin: 3rem auto 0;">
+                <p style="text-align: center; font-size: 1.1em; color: var(--text-dark);">
+                    <strong>Regra:</strong> Se virar contrato/notificação/reunião longa → 
+                    proposta à parte para o cliente final.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Como Funciona -->
+    <section>
+        <div class="container">
+            <h2>Como Funciona</h2>
+            <p style="text-align: center; font-size: 1.2em; margin-bottom: 3rem; color: var(--text-dark);">
+                Processo estruturado em 45 dias
+            </p>
+
+            <div class="process-step">
+                <div class="process-number">1</div>
+                <div class="process-content">
+                    <h3>Diagnóstico</h3>
+                    <p>Checklist rápido para mapear necessidades e identificar gaps jurídicos</p>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="process-number">2</div>
+                <div class="process-content">
+                    <h3>Padronização</h3>
+                    <p>Elaboração dos documentos base conforme seu perfil e necessidades</p>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="process-number">3</div>
+                <div class="process-content">
+                    <h3>Entrega</h3>
+                    <p>Documentos prontos para uso, revisados e alinhados com você</p>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="process-number">4</div>
+                <div class="process-content">
+                    <h3>Rotina</h3>
+                    <p>Suporte contínuo conforme seu plano (reuniões, triagens, documentos)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contato" class="cta-section">
+        <div class="container">
+            <h2>Próximo Passo</h2>
+            <p style="font-size: 1.3em; margin-bottom: 2em;">
+                Agende uma conversa para entender suas necessidades e definir o melhor pacote
+            </p>
+            <a href="#contato" class="cta-button" style="background: white; color: var(--primary-color);">
+                Agendar Conversa
+            </a>
+            <div class="checklist">
+                <p style="margin-bottom: 1em; font-weight: 600;">Para agilizar, tenha em mãos:</p>
+                <ul>
+                    <li>Informações sobre seu escritório (tamanho, carteira de clientes)</li>
+                    <li>Principais dores jurídicas que você enfrenta</li>
+                    <li>Objetivos com a blindagem jurídica</li>
+                    <li>Orçamento disponível para investimento</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <img src="logoinferior.webp" alt="Logo" class="logo-footer">
+            <p style="margin-top: 1rem; opacity: 0.9;">
+                Pacotes Jurídicos para Contadores | Blindagem Jurídica Escalável
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll para links de navegação
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header fixo com efeito ao scroll
+        let lastScroll = 0;
+        const header = document.querySelector('header');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 100) {
+                header.style.boxShadow = '0 4px 15px rgba(0,0,0,0.15)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            }
+            lastScroll = currentScroll;
+        });
+    </script>
+</body>
+</html>
