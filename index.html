@@ -12,17 +12,18 @@
         }
 
         :root {
-            --primary-color: #1a365d;
-            --secondary-color: #2c5282;
-            --accent-color: #3182ce;
-            --text-dark: #2d3748;
-            --text-light: #718096;
-            --bg-light: #f7fafc;
+            --primary-color: #1e3a5f;
+            --secondary-color: #2d4a6b;
+            --accent-color: #4a6fa5;
+            --text-dark: #1a1a1a;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
             --bg-white: #ffffff;
-            --border-color: #e2e8f0;
-            --success-color: #38a169;
-            --warning-color: #d69e2e;
-            --danger-color: #e53e3e;
+            --border-color: #e5e7eb;
+            --success-color: #059669;
+            --gold-accent: #d4af37;
+            --shadow-light: rgba(0, 0, 0, 0.05);
+            --shadow-medium: rgba(0, 0, 0, 0.1);
         }
 
         html {
@@ -30,23 +31,30 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Georgia', 'Times New Roman', serif;
             color: var(--text-dark);
-            line-height: 1.6;
+            line-height: 1.8;
             background-color: var(--bg-white);
+            font-size: 16px;
         }
 
-        /* Header Fixo */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        /* Header Fixo - Estilo Institucional */
         header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: var(--bg-white);
+            border-bottom: 2px solid var(--border-color);
+            box-shadow: 0 1px 3px var(--shadow-light);
             z-index: 1000;
-            padding: 1rem 2rem;
+            padding: 1.25rem 3rem;
         }
 
         nav {
@@ -71,116 +79,166 @@
 
         .nav-links a {
             text-decoration: none;
-            color: var(--text-dark);
+            color: var(--primary-color);
             font-weight: 500;
+            font-size: 0.95em;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
             transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s;
         }
 
         .nav-links a:hover {
-            color: var(--accent-color);
+            color: var(--primary-color);
         }
 
-        /* Hero Section */
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section - Estilo Institucional */
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             color: white;
-            padding: 150px 2rem 100px;
+            padding: 180px 3rem 120px;
             text-align: center;
-            margin-top: 70px;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.5;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
-            font-size: 3.5em;
-            margin-bottom: 1rem;
-            font-weight: 700;
+            font-size: 3.2em;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
         }
 
         .hero .subtitle {
-            font-size: 1.5em;
-            margin-bottom: 2rem;
+            font-size: 1.4em;
+            margin-bottom: 3rem;
             opacity: 0.95;
+            font-weight: 300;
+            letter-spacing: 0.5px;
         }
 
         .cta-button {
             display: inline-block;
-            background: white;
+            background: var(--bg-white);
             color: var(--primary-color);
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
+            padding: 1.1rem 3rem;
+            border-radius: 4px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1em;
-            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 1em;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border: 2px solid var(--bg-white);
+            transition: all 0.3s;
             margin: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         .cta-button:hover {
+            background: transparent;
+            color: var(--bg-white);
+            border-color: var(--bg-white);
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
 
         /* Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 3rem;
         }
 
-        /* Sections */
+        /* Sections - Estilo Institucional */
         section {
-            padding: 80px 0;
+            padding: 100px 0;
+            position: relative;
+        }
+
+        section.bg-light {
+            background: var(--bg-light);
         }
 
         section h2 {
-            font-size: 2.5em;
+            font-size: 2.8em;
             color: var(--primary-color);
-            margin-bottom: 1em;
+            margin-bottom: 3rem;
             text-align: center;
-            border-bottom: 3px solid var(--accent-color);
-            padding-bottom: 0.5em;
-            display: inline-block;
-            width: 100%;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gold-accent);
         }
 
         section h3 {
-            font-size: 1.8em;
-            color: var(--secondary-color);
-            margin: 1.5em 0 1em;
+            font-size: 1.6em;
+            color: var(--primary-color);
+            margin: 2em 0 1.2em;
+            font-weight: 600;
+            letter-spacing: -0.01em;
         }
 
-        /* Cards */
+        /* Cards - Estilo Institucional */
         .card {
             background: white;
-            border-radius: 16px;
-            padding: 2.5rem;
-            margin: 1.5rem 0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 0;
+            padding: 3rem;
+            margin: 2rem 0;
+            box-shadow: 0 2px 8px var(--shadow-light);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
             position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
-            opacity: 0;
-            transition: opacity 0.3s;
         }
 
         .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.08);
-            border-color: var(--accent-color);
-        }
-
-        .card:hover::before {
-            opacity: 1;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px var(--shadow-medium);
+            border-left-color: var(--gold-accent);
         }
 
         .card-grid {
@@ -213,31 +271,34 @@
         }
 
         .badge-simples {
-            background-color: #c6f6d5;
-            color: #22543d;
+            background-color: #e0f2fe;
+            color: var(--primary-color);
+            border: 1px solid #bae6fd;
         }
 
         .badge-medio {
-            background-color: #fed7aa;
-            color: #7c2d12;
+            background-color: #fef3c7;
+            color: var(--primary-color);
+            border: 1px solid #fde68a;
         }
 
         .badge-robusto {
-            background-color: #fecaca;
-            color: #991b1b;
+            background-color: #fee2e2;
+            color: var(--primary-color);
+            border: 1px solid #fecaca;
         }
 
-        /* Price Cards */
+        /* Price Cards - Estilo Institucional */
         .price-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             color: white;
-            padding: 2.5rem;
-            border-radius: 16px;
-            margin: 1.5rem 0;
+            padding: 3rem;
+            border-radius: 0;
+            margin: 2rem 0;
             text-align: center;
-            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 4px 12px rgba(30, 58, 95, 0.2);
             position: relative;
-            overflow: hidden;
+            border-top: 4px solid var(--gold-accent);
         }
 
         .price-card::after {
@@ -279,22 +340,23 @@
             line-height: 1.6;
         }
 
-        /* Package Cards */
+        /* Package Cards - Estilo Institucional */
         .package-card {
             background: white;
-            border: 2px solid var(--border-color);
-            border-radius: 16px;
-            padding: 2.5rem;
-            margin: 1.5rem 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--primary-color);
+            border-radius: 0;
+            padding: 3rem;
+            margin: 2rem 0;
+            transition: all 0.3s ease;
             position: relative;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            box-shadow: 0 2px 6px var(--shadow-light);
         }
 
         .package-card:hover {
-            border-color: var(--accent-color);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            transform: translateY(-4px);
+            border-left-color: var(--gold-accent);
+            box-shadow: 0 6px 12px var(--shadow-medium);
+            transform: translateY(-3px);
         }
 
         .package-card h3 {
@@ -346,11 +408,12 @@
 
         .price-item {
             flex: 1;
-            padding: 1.5em 1em;
+            padding: 1.8em 1.2em;
             background: var(--bg-light);
-            border-radius: 12px;
+            border-radius: 0;
             text-align: center;
-            border: 2px solid transparent;
+            border: 1px solid var(--border-color);
+            border-top: 3px solid var(--primary-color);
             transition: all 0.3s;
             min-width: 0;
             display: flex;
@@ -365,14 +428,15 @@
         }
 
         .price-item.highlight {
-            background: rgba(255,255,255,0.25);
+            background: rgba(255,255,255,0.2);
             color: white;
             border-color: rgba(255,255,255,0.3);
+            border-top-color: var(--gold-accent);
         }
 
         .price-item.highlight:hover {
-            background: rgba(255,255,255,0.3);
-            border-color: rgba(255,255,255,0.5);
+            background: rgba(255,255,255,0.25);
+            border-color: rgba(255,255,255,0.4);
         }
 
         .price-item .label {
@@ -398,36 +462,41 @@
         }
 
         .price-savings {
-            font-size: 0.85em;
-            color: var(--success-color);
+            font-size: 0.9em;
+            color: var(--gold-accent);
             font-weight: 600;
             margin-top: 0.75em;
             display: block;
             line-height: 1.4;
+            letter-spacing: 0.5px;
         }
 
-        /* Tables */
+        /* Tables - Estilo Institucional */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 2rem 0;
+            margin: 2.5rem 0;
             background: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            border-radius: 8px;
-            overflow: hidden;
+            box-shadow: 0 1px 3px var(--shadow-light);
+            border: 1px solid var(--border-color);
         }
 
         table th {
             background-color: var(--primary-color);
             color: white;
-            padding: 1rem;
+            padding: 1.2rem 1rem;
             text-align: left;
             font-weight: 600;
+            font-size: 0.95em;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--secondary-color);
         }
 
         table td {
-            padding: 1rem;
+            padding: 1.2rem 1rem;
             border-bottom: 1px solid var(--border-color);
+            font-size: 0.95em;
         }
 
         table tr:hover {
@@ -452,47 +521,56 @@
         }
 
         .problem-box {
-            background: #fed7d7;
-            border-left: 4px solid #e53e3e;
+            background: #fef2f2;
+            border-left: 4px solid #dc2626;
+            border: 1px solid #fee2e2;
         }
 
         .problem-box h3 {
-            color: #c53030;
+            color: #991b1b;
         }
 
         .solution-box {
-            background: #c6f6d5;
-            border-left: 4px solid #38a169;
+            background: #f0fdf4;
+            border-left: 4px solid var(--success-color);
+            border: 1px solid #dcfce7;
         }
 
         .solution-box h3 {
-            color: #22543d;
+            color: #166534;
         }
 
         /* Process Steps */
         .process-step {
             display: flex;
             align-items: flex-start;
-            margin: 2rem 0;
-            padding: 2rem;
-            background: var(--bg-light);
-            border-radius: 12px;
-            border-left: 4px solid var(--accent-color);
+            margin: 2.5rem 0;
+            padding: 2.5rem;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s;
+        }
+
+        .process-step:hover {
+            border-left-color: var(--gold-accent);
+            box-shadow: 0 4px 8px var(--shadow-light);
         }
 
         .process-number {
-            background: var(--accent-color);
+            background: var(--primary-color);
             color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            border-radius: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 1.5em;
-            margin-right: 1.5rem;
+            font-size: 1.8em;
+            margin-right: 2rem;
             flex-shrink: 0;
+            border: 2px solid var(--gold-accent);
         }
 
         .process-content h3 {
@@ -542,12 +620,19 @@
             font-size: 1.2em;
         }
 
-        /* Footer */
+        /* Footer - Estilo Institucional */
         footer {
             background: var(--primary-color);
             color: white;
-            padding: 3rem 2rem;
+            padding: 4rem 3rem;
             text-align: center;
+            border-top: 4px solid var(--gold-accent);
+        }
+
+        footer p {
+            opacity: 0.9;
+            font-size: 0.95em;
+            letter-spacing: 0.5px;
         }
 
         .logo-footer {
