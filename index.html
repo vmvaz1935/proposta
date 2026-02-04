@@ -164,8 +164,9 @@
             height: 100%;
             object-fit: cover;
             z-index: 1;
-            opacity: 0.6;
+            opacity: 0.7;
             pointer-events: none;
+            background: #0a0e27;
         }
 
         @keyframes gradientShift {
@@ -1585,12 +1586,13 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="">
-            <!-- Vídeo de ponte estaiada - URLs alternativas -->
-            <source src="https://videos.pexels.com/video-files/3045163/3045163-uhd_2560_1440_30fps.mp4" type="video/mp4">
-            <source src="https://videos.pexels.com/video-files/3045163/3045163-hd_1920_1080_30fps.mp4" type="video/mp4">
-            <!-- Fallback: vídeo de ponte do Pexels ID 2491284 -->
+        <video class="hero-video" autoplay muted loop playsinline preload="auto">
+            <!-- Vídeo de ponte estaiada - Múltiplas URLs para garantir carregamento -->
             <source src="https://videos.pexels.com/video-files/2491284/2491284-hd_1920_1080_30fps.mp4" type="video/mp4">
+            <source src="https://videos.pexels.com/video-files/3045163/3045163-hd_1920_1080_30fps.mp4" type="video/mp4">
+            <source src="https://videos.pexels.com/video-files/3045163/3045163-uhd_2560_1440_30fps.mp4" type="video/mp4">
+            <!-- Fallback: vídeo de ponte do Pixabay -->
+            <source src="https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c0fd273d2c6d9a064f3ae35579b2bb9&profile_id=165" type="video/mp4">
         </video>
         <div class="container">
             <h1>Pacotes Jurídicos<br>para Contadores</h1>
@@ -2442,44 +2444,68 @@
             const heroSection = document.querySelector('.hero');
             
             if (heroVideo && heroSection) {
-                // Quando o vídeo começar a carregar, marcar como carregado
+                // Lista de URLs alternativas para tentar
+                const videoUrls = [
+                    'https://videos.pexels.com/video-files/2491284/2491284-hd_1920_1080_30fps.mp4',
+                    'https://videos.pexels.com/video-files/3045163/3045163-hd_1920_1080_30fps.mp4',
+                    'https://videos.pexels.com/video-files/3045163/3045163-uhd_2560_1440_30fps.mp4'
+                ];
+                
+                let currentVideoIndex = 0;
+                
+                function tryLoadVideo(index) {
+                    if (index >= videoUrls.length) {
+                        console.log('Todos os vídeos falharam, usando background fallback');
+                        heroSection.classList.remove('video-loaded');
+                        return;
+                    }
+                    
+                    heroVideo.src = videoUrls[index];
+                    heroVideo.load();
+                    
+                    // Tentar reproduzir
+                    const playPromise = heroVideo.play();
+                    
+                    if (playPromise !== undefined) {
+                        playPromise.then(function() {
+                            heroSection.classList.add('video-loaded');
+                            heroVideo.style.opacity = '0.7';
+                            console.log('Vídeo ' + (index + 1) + ' reproduzindo com sucesso');
+                        }).catch(function(error) {
+                            console.log('Erro ao reproduzir vídeo ' + (index + 1) + ':', error);
+                            // Tentar próximo vídeo
+                            tryLoadVideo(index + 1);
+                        });
+                    }
+                }
+                
+                // Quando o vídeo começar a carregar
                 heroVideo.addEventListener('loadeddata', function() {
                     heroSection.classList.add('video-loaded');
+                    heroVideo.style.opacity = '0.7';
                     console.log('Vídeo carregado com sucesso');
                 });
 
-                // Quando o vídeo começar a reproduzir, garantir que está visível
+                // Quando o vídeo começar a reproduzir
                 heroVideo.addEventListener('playing', function() {
                     heroSection.classList.add('video-loaded');
-                    heroVideo.style.opacity = '0.6';
+                    heroVideo.style.opacity = '0.7';
                     console.log('Vídeo reproduzindo');
                 });
-
-                // Forçar carregamento do vídeo
-                heroVideo.load();
                 
-                // Tentar reproduzir
-                const playPromise = heroVideo.play();
+                // Quando houver erro no vídeo
+                heroVideo.addEventListener('error', function(e) {
+                    console.log('Erro no vídeo:', e);
+                    if (currentVideoIndex < videoUrls.length - 1) {
+                        currentVideoIndex++;
+                        tryLoadVideo(currentVideoIndex);
+                    } else {
+                        heroSection.classList.remove('video-loaded');
+                    }
+                });
                 
-                if (playPromise !== undefined) {
-                    playPromise.then(function() {
-                        heroSection.classList.add('video-loaded');
-                        heroVideo.style.opacity = '0.6';
-                        console.log('Vídeo reproduzindo com sucesso');
-                    }).catch(function(error) {
-                        console.log('Erro ao reproduzir vídeo:', error);
-                        // Se falhar, tentar vídeo alternativo
-                        heroVideo.src = 'https://videos.pexels.com/video-files/2491284/2491284-hd_1920_1080_30fps.mp4';
-                        heroVideo.load();
-                        heroVideo.play().then(function() {
-                            heroSection.classList.add('video-loaded');
-                            heroVideo.style.opacity = '0.6';
-                        }).catch(function(err) {
-                            console.log('Vídeo alternativo também falhou:', err);
-                            heroSection.classList.remove('video-loaded');
-                        });
-                    });
-                }
+                // Iniciar tentativa de carregamento
+                tryLoadVideo(0);
             }
         });
 
