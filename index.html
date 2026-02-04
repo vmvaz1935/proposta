@@ -2444,8 +2444,9 @@
             const heroSection = document.querySelector('.hero');
             
             if (heroVideo && heroSection) {
-                // Lista de URLs alternativas para tentar
-                const videoUrls = [
+                // Lista de fontes: primeiro local, depois URLs externas
+                const videoSources = [
+                    'ponte_estaiada.mp4', // Vídeo local (prioridade)
                     'https://videos.pexels.com/video-files/2491284/2491284-hd_1920_1080_30fps.mp4',
                     'https://videos.pexels.com/video-files/3045163/3045163-hd_1920_1080_30fps.mp4',
                     'https://videos.pexels.com/video-files/3045163/3045163-uhd_2560_1440_30fps.mp4'
@@ -2454,13 +2455,13 @@
                 let currentVideoIndex = 0;
                 
                 function tryLoadVideo(index) {
-                    if (index >= videoUrls.length) {
+                    if (index >= videoSources.length) {
                         console.log('Todos os vídeos falharam, usando background fallback');
                         heroSection.classList.remove('video-loaded');
                         return;
                     }
                     
-                    heroVideo.src = videoUrls[index];
+                    heroVideo.src = videoSources[index];
                     heroVideo.load();
                     
                     // Tentar reproduzir
@@ -2470,9 +2471,9 @@
                         playPromise.then(function() {
                             heroSection.classList.add('video-loaded');
                             heroVideo.style.opacity = '0.7';
-                            console.log('Vídeo ' + (index + 1) + ' reproduzindo com sucesso');
+                            console.log('Vídeo ' + (index === 0 ? 'local' : 'externo ' + index) + ' reproduzindo com sucesso');
                         }).catch(function(error) {
-                            console.log('Erro ao reproduzir vídeo ' + (index + 1) + ':', error);
+                            console.log('Erro ao reproduzir vídeo ' + (index === 0 ? 'local' : 'externo ' + index) + ':', error);
                             // Tentar próximo vídeo
                             tryLoadVideo(index + 1);
                         });
@@ -2496,7 +2497,7 @@
                 // Quando houver erro no vídeo
                 heroVideo.addEventListener('error', function(e) {
                     console.log('Erro no vídeo:', e);
-                    if (currentVideoIndex < videoUrls.length - 1) {
+                    if (currentVideoIndex < videoSources.length - 1) {
                         currentVideoIndex++;
                         tryLoadVideo(currentVideoIndex);
                     } else {
@@ -2504,7 +2505,7 @@
                     }
                 });
                 
-                // Iniciar tentativa de carregamento
+                // Iniciar tentativa de carregamento (começa pelo vídeo local)
                 tryLoadVideo(0);
             }
         });
