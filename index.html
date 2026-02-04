@@ -123,9 +123,7 @@
 
         /* Hero Section - Design Premium Melhorado */
         .hero {
-            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f172a 100%);
-            background-size: 200% 200%;
-            animation: gradientShift 25s ease infinite;
+            background: transparent;
             color: white;
             padding: 180px 4rem 100px;
             text-align: center;
@@ -137,18 +135,30 @@
             justify-content: center;
         }
 
+        /* Background fallback caso o vídeo não carregue */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f172a 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 25s ease infinite;
+            z-index: 0;
+            opacity: 0.6;
+        }
+
         .hero-video {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translate(-50%, -50%);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
             z-index: 0;
-            opacity: 0.35;
+            opacity: 0.5;
             pointer-events: none;
         }
 
@@ -158,7 +168,8 @@
             100% { background-position: 0% 50%; }
         }
 
-        .hero::before {
+        /* Overlay escuro sobre o vídeo para melhorar legibilidade */
+        .hero::after {
             content: '';
             position: absolute;
             top: 0;
@@ -166,13 +177,11 @@
             right: 0;
             bottom: 0;
             background: 
-                radial-gradient(circle at 15% 25%, rgba(37, 99, 235, 0.18) 0%, transparent 60%),
-                radial-gradient(circle at 85% 75%, rgba(217, 119, 6, 0.12) 0%, transparent 60%),
-                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 80%),
-                linear-gradient(180deg, transparent 0%, rgba(10, 14, 39, 0.5) 100%);
-            opacity: 1;
-            animation: pulseGlow 8s ease-in-out infinite alternate;
+                radial-gradient(circle at 15% 25%, rgba(37, 99, 235, 0.15) 0%, transparent 60%),
+                radial-gradient(circle at 85% 75%, rgba(217, 119, 6, 0.1) 0%, transparent 60%),
+                linear-gradient(180deg, rgba(10, 14, 39, 0.4) 0%, rgba(10, 14, 39, 0.6) 100%);
             z-index: 1;
+            pointer-events: none;
         }
 
         @keyframes pulseGlow {
@@ -1570,12 +1579,12 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <video class="hero-video" autoplay muted loop playsinline preload="auto">
-            <!-- Vídeo de ponte estaiada - Pexels -->
+        <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="">
+            <!-- Vídeo de ponte estaiada - URLs alternativas -->
             <source src="https://videos.pexels.com/video-files/3045163/3045163-uhd_2560_1440_30fps.mp4" type="video/mp4">
             <source src="https://videos.pexels.com/video-files/3045163/3045163-hd_1920_1080_30fps.mp4" type="video/mp4">
-            <!-- Vídeo alternativo de ponte - Coverr -->
-            <source src="https://coverr.co/videos/bridge-over-water-1561352597374" type="video/mp4">
+            <!-- Fallback: vídeo de ponte do Pexels ID 2491284 -->
+            <source src="https://videos.pexels.com/video-files/2491284/2491284-hd_1920_1080_30fps.mp4" type="video/mp4">
         </video>
         <div class="container">
             <h1>Pacotes Jurídicos<br>para Contadores</h1>
@@ -2425,11 +2434,25 @@
         document.addEventListener('DOMContentLoaded', function() {
             const heroVideo = document.querySelector('.hero-video');
             if (heroVideo) {
-                heroVideo.play().catch(function(error) {
-                    console.log('Erro ao reproduzir vídeo:', error);
-                    // Tentar carregar vídeo alternativo se o primeiro falhar
-                    heroVideo.src = 'https://coverr.co/videos/bridge-over-water-1561352597374';
-                });
+                // Forçar carregamento do vídeo
+                heroVideo.load();
+                
+                // Tentar reproduzir
+                const playPromise = heroVideo.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(function() {
+                        console.log('Vídeo reproduzindo com sucesso');
+                    }).catch(function(error) {
+                        console.log('Erro ao reproduzir vídeo:', error);
+                        // Tentar com vídeo alternativo
+                        heroVideo.src = 'https://videos.pexels.com/video-files/2491284/2491284-hd_1920_1080_30fps.mp4';
+                        heroVideo.load();
+                        heroVideo.play().catch(function(err) {
+                            console.log('Vídeo alternativo também falhou:', err);
+                        });
+                    });
+                }
             }
         });
 
