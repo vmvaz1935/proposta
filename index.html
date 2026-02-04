@@ -133,6 +133,17 @@
             justify-content: center;
         }
 
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -150,9 +161,10 @@
                 radial-gradient(circle at 15% 25%, rgba(37, 99, 235, 0.18) 0%, transparent 60%),
                 radial-gradient(circle at 85% 75%, rgba(217, 119, 6, 0.12) 0%, transparent 60%),
                 radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 80%),
-                linear-gradient(180deg, transparent 0%, rgba(10, 14, 39, 0.3) 100%);
+                linear-gradient(180deg, transparent 0%, rgba(10, 14, 39, 0.5) 100%);
             opacity: 1;
             animation: pulseGlow 8s ease-in-out infinite alternate;
+            z-index: 1;
         }
 
         @keyframes pulseGlow {
@@ -171,11 +183,12 @@
                 url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.02)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>'),
                 url('data:image/svg+xml,<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="dots" width="60" height="60" patternUnits="userSpaceOnUse"><circle cx="30" cy="30" r="1" fill="rgba(255,255,255,0.04)"/></pattern></defs><rect width="60" height="60" fill="url(%23dots)"/></svg>');
             opacity: 0.6;
+            z-index: 1;
         }
 
         .hero .container {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             max-width: 900px;
             animation: fadeInUp 1s ease-out;
         }
@@ -1295,6 +1308,12 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="https://videos.pexels.com/video-files/3045163/3045163-uhd_2560_1440_30fps.mp4" type="video/mp4">
+            <source src="https://videos.pexels.com/video-files/3045163/3045163-hd_1920_1080_30fps.mp4" type="video/mp4">
+            <!-- Fallback para navegadores que não suportam vídeo -->
+            Seu navegador não suporta vídeos HTML5.
+        </video>
         <div class="container">
             <h1>Pacotes Jurídicos<br>para Contadores</h1>
             <p class="subtitle">Blindagem jurídica escalável para seu escritório</p>
