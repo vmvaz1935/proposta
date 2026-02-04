@@ -135,7 +135,7 @@
             justify-content: center;
         }
 
-        /* Background fallback caso o vídeo não carregue */
+        /* Background fallback caso o vídeo não carregue - só aparece se vídeo não estiver presente */
         .hero::before {
             content: '';
             position: absolute;
@@ -147,7 +147,13 @@
             background-size: 200% 200%;
             animation: gradientShift 25s ease infinite;
             z-index: 0;
-            opacity: 0.6;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        /* Mostrar fallback apenas se vídeo não estiver disponível */
+        .hero:not(.video-loaded)::before {
+            opacity: 0.8;
         }
 
         .hero-video {
@@ -157,8 +163,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            z-index: 0;
-            opacity: 0.5;
+            z-index: 1;
+            opacity: 0.6;
             pointer-events: none;
         }
 
@@ -177,10 +183,10 @@
             right: 0;
             bottom: 0;
             background: 
-                radial-gradient(circle at 15% 25%, rgba(37, 99, 235, 0.15) 0%, transparent 60%),
-                radial-gradient(circle at 85% 75%, rgba(217, 119, 6, 0.1) 0%, transparent 60%),
-                linear-gradient(180deg, rgba(10, 14, 39, 0.4) 0%, rgba(10, 14, 39, 0.6) 100%);
-            z-index: 1;
+                radial-gradient(circle at 15% 25%, rgba(37, 99, 235, 0.1) 0%, transparent 60%),
+                radial-gradient(circle at 85% 75%, rgba(217, 119, 6, 0.08) 0%, transparent 60%),
+                linear-gradient(180deg, rgba(10, 14, 39, 0.3) 0%, rgba(10, 14, 39, 0.5) 100%);
+            z-index: 2;
             pointer-events: none;
         }
 
@@ -2433,7 +2439,22 @@
         // Garantir que o vídeo carregue e reproduza
         document.addEventListener('DOMContentLoaded', function() {
             const heroVideo = document.querySelector('.hero-video');
-            if (heroVideo) {
+            const heroSection = document.querySelector('.hero');
+            
+            if (heroVideo && heroSection) {
+                // Quando o vídeo começar a carregar, marcar como carregado
+                heroVideo.addEventListener('loadeddata', function() {
+                    heroSection.classList.add('video-loaded');
+                    console.log('Vídeo carregado com sucesso');
+                });
+
+                // Quando o vídeo começar a reproduzir, garantir que está visível
+                heroVideo.addEventListener('playing', function() {
+                    heroSection.classList.add('video-loaded');
+                    heroVideo.style.opacity = '0.6';
+                    console.log('Vídeo reproduzindo');
+                });
+
                 // Forçar carregamento do vídeo
                 heroVideo.load();
                 
@@ -2442,14 +2463,20 @@
                 
                 if (playPromise !== undefined) {
                     playPromise.then(function() {
+                        heroSection.classList.add('video-loaded');
+                        heroVideo.style.opacity = '0.6';
                         console.log('Vídeo reproduzindo com sucesso');
                     }).catch(function(error) {
                         console.log('Erro ao reproduzir vídeo:', error);
-                        // Tentar com vídeo alternativo
+                        // Se falhar, tentar vídeo alternativo
                         heroVideo.src = 'https://videos.pexels.com/video-files/2491284/2491284-hd_1920_1080_30fps.mp4';
                         heroVideo.load();
-                        heroVideo.play().catch(function(err) {
+                        heroVideo.play().then(function() {
+                            heroSection.classList.add('video-loaded');
+                            heroVideo.style.opacity = '0.6';
+                        }).catch(function(err) {
                             console.log('Vídeo alternativo também falhou:', err);
+                            heroSection.classList.remove('video-loaded');
                         });
                     });
                 }
