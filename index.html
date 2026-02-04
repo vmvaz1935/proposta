@@ -135,13 +135,17 @@
 
         .hero-video {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
             object-fit: cover;
             z-index: 0;
-            opacity: 0.4;
+            opacity: 0.35;
+            pointer-events: none;
         }
 
         @keyframes gradientShift {
@@ -1308,11 +1312,12 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <video class="hero-video" autoplay muted loop playsinline>
+        <video class="hero-video" autoplay muted loop playsinline preload="auto">
+            <!-- Vídeo de ponte estaiada - Pexels -->
             <source src="https://videos.pexels.com/video-files/3045163/3045163-uhd_2560_1440_30fps.mp4" type="video/mp4">
             <source src="https://videos.pexels.com/video-files/3045163/3045163-hd_1920_1080_30fps.mp4" type="video/mp4">
-            <!-- Fallback para navegadores que não suportam vídeo -->
-            Seu navegador não suporta vídeos HTML5.
+            <!-- Vídeo alternativo de ponte - Coverr -->
+            <source src="https://coverr.co/videos/bridge-over-water-1561352597374" type="video/mp4">
         </video>
         <div class="container">
             <h1>Pacotes Jurídicos<br>para Contadores</h1>
@@ -2155,6 +2160,18 @@
         document.getElementById('qrModal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeQRModal();
+            }
+        });
+
+        // Garantir que o vídeo carregue e reproduza
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroVideo = document.querySelector('.hero-video');
+            if (heroVideo) {
+                heroVideo.play().catch(function(error) {
+                    console.log('Erro ao reproduzir vídeo:', error);
+                    // Tentar carregar vídeo alternativo se o primeiro falhar
+                    heroVideo.src = 'https://coverr.co/videos/bridge-over-water-1561352597374';
+                });
             }
         });
 
