@@ -292,13 +292,16 @@
         .price-card {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             color: white;
-            padding: 3rem;
+            padding: 2.5rem 2rem;
             border-radius: 0;
             margin: 2rem 0;
             text-align: center;
             box-shadow: 0 4px 12px rgba(30, 58, 95, 0.2);
             position: relative;
             border-top: 4px solid var(--gold-accent);
+            overflow: hidden;
+            word-wrap: break-word;
+            box-sizing: border-box;
         }
 
         .price-card::after {
@@ -316,28 +319,36 @@
             color: white;
             margin-top: 0;
             margin-bottom: 1rem;
-            font-size: 1.8em;
+            font-size: 1.5em;
             font-weight: 600;
             position: relative;
             z-index: 1;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            line-height: 1.3;
         }
 
         .price-large {
-            font-size: 3.5em;
+            font-size: 2.8em;
             font-weight: 700;
-            margin: 0.5em 0;
-            line-height: 1;
+            margin: 0.8em 0;
+            line-height: 1.1;
             position: relative;
             z-index: 1;
             text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .price-small {
-            font-size: 1.1em;
+            font-size: 1em;
             opacity: 0.95;
             position: relative;
             z-index: 1;
-            line-height: 1.6;
+            line-height: 1.5;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            margin-top: 0.5em;
         }
 
         /* Package Cards - Estilo Institucional */
@@ -651,27 +662,36 @@
             height: 100%;
             display: flex;
             flex-direction: column;
+            overflow: hidden;
         }
 
         .plan-card .price-card {
-            margin: -2.5rem -2.5rem 2rem -2.5rem;
-            border-radius: 16px 16px 0 0;
+            margin: -3rem -3rem 2rem -3rem;
+            border-radius: 0;
+            width: calc(100% + 6rem);
+            box-sizing: border-box;
         }
 
         .plan-card-content {
             flex: 1;
             display: flex;
             flex-direction: column;
+            overflow: hidden;
+            min-height: 0;
         }
 
         .plan-features {
             flex: 1;
+            overflow-y: auto;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .plan-features ul {
             margin-bottom: 1.5rem;
             list-style: none;
             padding-left: 0;
+            word-wrap: break-word;
         }
 
         .plan-features li {
@@ -679,6 +699,8 @@
             position: relative;
             margin: 0.75em 0;
             line-height: 1.6;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .plan-features li::before {
@@ -695,6 +717,8 @@
             color: var(--secondary-color);
             margin-bottom: 0.75em;
             margin-top: 1.5em;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .plan-features p:first-child {
@@ -708,6 +732,8 @@
             font-style: italic;
             color: var(--text-light);
             font-size: 0.95em;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         /* Responsive */
